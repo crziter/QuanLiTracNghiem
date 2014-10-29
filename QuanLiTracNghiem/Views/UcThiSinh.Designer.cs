@@ -42,11 +42,11 @@
             this.TxtMatKhau = new System.Windows.Forms.TextBox();
             this.TxtTenThat = new System.Windows.Forms.TextBox();
             this.TxtEmail = new System.Windows.Forms.TextBox();
-            this.BtnEdit = new System.Windows.Forms.Button();
-            this.BtnDelete = new System.Windows.Forms.Button();
-            this.BtnNew = new System.Windows.Forms.Button();
             this.cActivate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ChkActivate = new System.Windows.Forms.CheckBox();
+            this.BtnClear = new System.Windows.Forms.Button();
+            this.BtnNew = new System.Windows.Forms.Button();
+            this.BtnEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LstThiSinh
@@ -177,41 +177,6 @@
             this.TxtEmail.Size = new System.Drawing.Size(195, 21);
             this.TxtEmail.TabIndex = 10;
             // 
-            // BtnEdit
-            // 
-            this.BtnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnEdit.Image = global::QuanLiTracNghiem.Properties.Resources.edit;
-            this.BtnEdit.Location = new System.Drawing.Point(634, 73);
-            this.BtnEdit.Name = "BtnEdit";
-            this.BtnEdit.Size = new System.Drawing.Size(51, 51);
-            this.BtnEdit.TabIndex = 12;
-            this.BtnEdit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnEdit.UseVisualStyleBackColor = true;
-            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
-            // 
-            // BtnDelete
-            // 
-            this.BtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnDelete.Image = global::QuanLiTracNghiem.Properties.Resources.delete;
-            this.BtnDelete.Location = new System.Drawing.Point(634, 16);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(51, 51);
-            this.BtnDelete.TabIndex = 11;
-            this.BtnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnDelete.UseVisualStyleBackColor = true;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
-            // 
-            // BtnNew
-            // 
-            this.BtnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnNew.Image = global::QuanLiTracNghiem.Properties.Resources._new;
-            this.BtnNew.Location = new System.Drawing.Point(634, 130);
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(51, 51);
-            this.BtnNew.TabIndex = 13;
-            this.BtnNew.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnNew.UseVisualStyleBackColor = true;
-            // 
             // cActivate
             // 
             this.cActivate.Text = "Hoạt động";
@@ -229,14 +194,50 @@
             this.ChkActivate.Text = "Hoạt động";
             this.ChkActivate.UseVisualStyleBackColor = true;
             // 
+            // BtnClear
+            // 
+            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnClear.Image = global::QuanLiTracNghiem.Properties.Resources.clear;
+            this.BtnClear.Location = new System.Drawing.Point(634, 130);
+            this.BtnClear.Name = "BtnClear";
+            this.BtnClear.Size = new System.Drawing.Size(51, 51);
+            this.BtnClear.TabIndex = 15;
+            this.BtnClear.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
+            // BtnNew
+            // 
+            this.BtnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnNew.Image = global::QuanLiTracNghiem.Properties.Resources._new;
+            this.BtnNew.Location = new System.Drawing.Point(634, 73);
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(51, 51);
+            this.BtnNew.TabIndex = 13;
+            this.BtnNew.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // BtnEdit
+            // 
+            this.BtnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnEdit.Image = global::QuanLiTracNghiem.Properties.Resources.edit;
+            this.BtnEdit.Location = new System.Drawing.Point(634, 16);
+            this.BtnEdit.Name = "BtnEdit";
+            this.BtnEdit.Size = new System.Drawing.Size(51, 51);
+            this.BtnEdit.TabIndex = 12;
+            this.BtnEdit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnEdit.UseVisualStyleBackColor = true;
+            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            // 
             // UcThiSinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.BtnClear);
             this.Controls.Add(this.ChkActivate);
             this.Controls.Add(this.BtnNew);
             this.Controls.Add(this.BtnEdit);
-            this.Controls.Add(this.BtnDelete);
             this.Controls.Add(this.TxtEmail);
             this.Controls.Add(this.TxtTenThat);
             this.Controls.Add(this.TxtMatKhau);
@@ -271,11 +272,11 @@
         private System.Windows.Forms.TextBox TxtMatKhau;
         private System.Windows.Forms.TextBox TxtTenThat;
         private System.Windows.Forms.TextBox TxtEmail;
-        private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnEdit;
         private System.Windows.Forms.Button BtnNew;
         private System.Windows.Forms.ColumnHeader cActivate;
         private System.Windows.Forms.CheckBox ChkActivate;
+        private System.Windows.Forms.Button BtnClear;
 
     }
 }

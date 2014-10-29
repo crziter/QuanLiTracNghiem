@@ -26,16 +26,15 @@ namespace QuanLiTracNghiem.Controllers
             return tss;
         }
 
-        public void Delete(ThiSinh t)
+        public bool New(ThiSinh ts)
         {
-            
+            return Ultilities.New(Ultilities.INSERT_THI_SINH, JsonConvert.SerializeObject(ts));
         }
 
         public bool Update(int id, ThiSinh t)
         {
             var dic = new Dictionary<string, string>();
-            dic.Add("id", id.ToString());
-            return Ultilities.PatchWeb(Ultilities.UPDATE_THI_SINH, JsonConvert.SerializeObject(t), dic);
+            return Ultilities.PatchWeb(string.Format(Ultilities.UPDATE_THI_SINH, id), JsonConvert.SerializeObject(t));
         }
     }
 }

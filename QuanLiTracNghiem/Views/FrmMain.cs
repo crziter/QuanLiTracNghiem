@@ -23,12 +23,13 @@ namespace QuanLiTracNghiem.Views
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-
+            _UcThiSinh = new UcThiSinh();
+            _UcDeThiCauHoi = new UcDeThi();
         }
 
         private void MnuThiSinh_Click(object sender, EventArgs e)
         {
-            SetContent(new UcThiSinh());
+            SetContent(_UcThiSinh);
         }
 
         private void SetContent(UserControl uc)
@@ -50,6 +51,11 @@ namespace QuanLiTracNghiem.Views
             {
                 _UcCurrent.SetBounds(0, 0, PnContent.Width, PnContent.Height);
             }
+        }
+
+        private void MnuDeThi_Click(object sender, EventArgs e)
+        {
+            SetContent(_UcDeThiCauHoi);
         }
     }
 }

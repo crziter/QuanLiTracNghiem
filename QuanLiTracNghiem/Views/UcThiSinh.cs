@@ -50,6 +50,16 @@ namespace QuanLiTracNghiem.Views
             }
         }
 
+        private void InforMess(String mess)
+        {
+            MessageBox.Show(this, mess, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ErrMess(string mess)
+        {
+            MessageBox.Show(this, mess, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         private void LstThiSinh_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (LstThiSinh.SelectedItems.Count == 0) return;
@@ -67,25 +77,10 @@ namespace QuanLiTracNghiem.Views
             }
         }
 
-        private void BtnDelete_Click(object sender, EventArgs e)
-        {
-            if (LstThiSinh.SelectedItems.Count == 0)
-            {
-                MessageBox.Show(this, "Chưa chọn thí sinh để xóa", "Lỗi");
-                return;
-            }
-
-            ThiSinh t = (ThiSinh)LstThiSinh.SelectedItems[0].Tag;
-            if (t != null)
-            {
-                _controller.Delete(t);
-            }
-        }
-
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             if (LstThiSinh.SelectedItems.Count == 0) {
-                MessageBox.Show(this, "Chưa chọn thí sinh để cập nhật", "Lỗi");
+                ErrMess("Chưa chọn thí sinh để cập nhật");
                 return;
             }
 
@@ -103,11 +98,48 @@ namespace QuanLiTracNghiem.Views
                 ReloadList();
                 SetList(_lst_ts);
 
-                MessageBox.Show(this, "Cập nhật thành công", "Thông báo");
+                InforMess("Cập nhật thành công");
             }
             else
             {
-                MessageBox.Show(this, "Cập nhật thất bại", "Thông báo");
+                ErrMess("Cập nhật thất bại");
+            }
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            TxtTenDangNhap.Text = "";
+            TxtEmail.Text = "";
+            TxtMatKhau.Text = "";
+            TxtTenThat.Text = "";
+            ChkActivate.Checked = false;
+        }
+
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+            ThiSinh ts = new ThiSinh();
+
+            ts.ten_dang_nhap = TxtTenDangNhap.Text;
+            ts.email = TxtEmail.Text;
+            ts.mat_khau = TxtMatKhau.Text;
+            ts.ten_that = TxtTenThat.Text;
+            ts.active = ChkActivate.Checked;
+
+            try
+            {
+                if (_controller.New(ts))
+                {
+                    ReloadList();
+                    SetList(_lst_ts);
+                    InforMess("Thêm thành công");
+                } else
+                {
+                    ErrMess("Thêm thất bại");
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrMess("Thêm thất bại, chi tiết lỗi: " + ex.Message);
             }
         }
     }

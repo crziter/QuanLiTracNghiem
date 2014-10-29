@@ -63,6 +63,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\UcDeThi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UcDeThi.Designer.cs">
+      <DependentUpon>UcDeThi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\UcThiSinh.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,6 +88,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\UcDeThi.resx">
+      <DependentUpon>UcDeThi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\UcThiSinh.resx">
       <DependentUpon>UcThiSinh.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +116,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Images\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Images\clear.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
