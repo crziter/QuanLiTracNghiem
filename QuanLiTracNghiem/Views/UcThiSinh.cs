@@ -93,16 +93,18 @@ namespace QuanLiTracNghiem.Views
             ts.ten_that = TxtTenThat.Text;
             ts.active = ChkActivate.Checked;
 
-            if (_controller.Update(cts.id, ts))
+            try
             {
+                _controller.Update(cts.id, ts);
+
                 ReloadList();
                 SetList(_lst_ts);
 
                 InforMess("Cập nhật thành công");
             }
-            else
+            catch (Exception ex)
             {
-                ErrMess("Cập nhật thất bại");
+                ErrMess("Cập nhật thất bại: " + ex.Message);
             }
         }
 

@@ -51,8 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\DeThiController.cs" />
     <Compile Include="Controllers\ThiSinhController.cs" />
     <Compile Include="Controllers\Ultilities.cs" />
+    <Compile Include="Models\CauHoi.cs" />
+    <Compile Include="Models\DeThi.cs" />
+    <Compile Include="Models\MonThi.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\ThiSinh.cs" />
     <Compile Include="Views\FrmMain.cs">
@@ -68,6 +72,12 @@
     </Compile>
     <Compile Include="Views\UcDeThi.Designer.cs">
       <DependentUpon>UcDeThi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UcReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UcReport.Designer.cs">
+      <DependentUpon>UcReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UcThiSinh.cs">
       <SubType>UserControl</SubType>

@@ -13,7 +13,7 @@ namespace QuanLiTracNghiem.Controllers
     class Ultilities
     {
         public static string HOST = "http://crziter.me:3000";
-        public static string DS_MON_THI = "api/mon_thi.json";
+        
         public static string DS_THI_SINH = "api/thi_sinh.json";
         public static string INSERT_THI_SINH = "api/thi_sinh.json";
         public static string UPDATE_THI_SINH = "api/thi_sinh/{0}.json"; // ID
@@ -44,27 +44,34 @@ namespace QuanLiTracNghiem.Controllers
             return response.Content;
         }
 
-        public static string GetWeb(string url)
+
+        public static List<T> GetListObject<T>(string url)
+        {
+            List<T> _rs = new List<T>();
+            string content = Get(url);
+
+            _rs = JsonConvert.DeserializeObject<List<T>>(content);
+
+            return _rs;
+        }
+
+        public static string Get(string url)
         {
             return WebContent(url, Method.GET, null, null);
         }
 
-        public static bool Delete(string url)
-        {
-            string content = WebContent(url, Method.DELETE, null, null);
-            return false;
-        }
-
-        public static bool PatchWeb(string url, string data)
+        public static bool Patch(string url, string data)
         {
             string content = WebContent(url, Method.PATCH, data, null);
 
             Result rs = JsonConvert.DeserializeObject<Result>(content);
-            if (rs.status != null && rs.status.Equals("ok")) return true;
-            return false;
+            if (rs.status != null) {
+                if (rs.status.Equals("ok")) return true;
+                else throw new Exception(rs.reason);
+            } else throw new Exception("Unknow reason");
         }
 
-        public static bool New(string url, string data)
+        public static bool Post(string url, string data)
         {
             string content = WebContent(url, Method.POST, data, null);
 
@@ -78,6 +85,11 @@ namespace QuanLiTracNghiem.Controllers
             }
 
             return false;
+        }
+
+        public static bool Update<T1>(string url, T1 obj)
+        {
+            return Patch(url, JsonConvert.SerializeObject(obj));
         }
     }
 }
