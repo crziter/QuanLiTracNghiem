@@ -14,5 +14,7 @@ namespace QuanLiTracNghiem.Models
         public string b { get; set; }
         public string c { get; set; }
         public string d { get; set; }
+        public int? da { get; set; }
+        public int? da_id { get; set; }
     }
 }

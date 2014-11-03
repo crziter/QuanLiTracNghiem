@@ -44,7 +44,7 @@ namespace QuanLiTracNghiem.Views
 
         private void UcDeThi_Load(object sender, EventArgs e)
         {
-
+            CbDapAn.SelectedIndex = 0;
         }
 
         private void LstMonThi_SelectedIndexChanged(object sender, EventArgs e)
@@ -108,6 +108,142 @@ namespace QuanLiTracNghiem.Views
             {
                 ErrMess("Chưa chọn môn thi để cập nhật");
             }
+        }
+
+        private void BtnXoaCauHoi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LstDeThi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DeThi dethi = (DeThi)LstDeThi.SelectedItem;
+            if (dethi != null)
+            {
+                CauHoiController c = new CauHoiController();
+                var list = c.GetAllCauHoi(dethi);
+                LstCauHoi.Items.Clear();
+
+                foreach (var i in list)
+                {
+                    ListViewItem lvi = new ListViewItem(new string[] {i.id.ToString(), i.noi_dung, i.a, i.b, i.c, i.d});
+                    lvi.Tag = i;
+                    LstCauHoi.Items.Add(lvi);
+                }
+
+
+            }
+        }
+
+        private void LstCauHoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CauHoi cauhoi;
+            if (LstCauHoi.SelectedItems.Count > 0)
+            {
+                cauhoi = (CauHoi)LstCauHoi.SelectedItems[0].Tag;
+                TxtNoiDung.Text = cauhoi.noi_dung;
+                TxtA.Text = cauhoi.a;
+                TxtB.Text = cauhoi.b;
+                TxtC.Text = cauhoi.c;
+                TxtD.Text = cauhoi.d;
+                CbDapAn.SelectedIndex = (int)cauhoi.da - 1;
+            }
+
+        }
+
+        private void BtnLuu_Click(object sender, EventArgs e)
+        {
+            if (TxtNoiDung.Text.Trim() != "" && TxtA.Text.Trim() != "" && TxtB.Text.Trim() != "" && TxtC.Text.Trim() != "" && TxtD.Text.Trim() != "" && CbDapAn.SelectedIndex != -1)
+            {
+                CauHoi cauhoi = (CauHoi)LstCauHoi.SelectedItems[0].Tag;
+                cauhoi.a = TxtA.Text.Trim();
+                cauhoi.b = TxtB.Text.Trim();
+                cauhoi.c = TxtC.Text.Trim();
+                cauhoi.d = TxtD.Text.Trim();
+                cauhoi.da = CbDapAn.SelectedIndex + 1;
+                CauHoiController c = new CauHoiController();
+
+                var rs = c.Update(cauhoi);
+                if (Ultilities.IsResultOk(rs))
+                {
+                    ListViewItem lvi = new ListViewItem(new string[] { 
+                        cauhoi.id.ToString(), 
+                        cauhoi.noi_dung, 
+                        cauhoi.a, 
+                        cauhoi.b, 
+                        cauhoi.c, 
+                        cauhoi.d });
+                    lvi.Tag = cauhoi;
+                    LstCauHoi.Items[LstCauHoi.SelectedItems[0].Index] = lvi;
+
+                    InfoMess("Thành công");
+                }
+                else
+                {
+                    ErrMess("Thất bại: " + rs.reason);
+                }
+            }
+            else
+            {
+                ErrMess("Chưa điền đầy đủ thông tin hoặc chưa chọn đề!");
+            }
+        }
+
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+            if (TxtNoiDung.Text.Trim() != "" && TxtA.Text.Trim() != "" && TxtB.Text.Trim() != "" && TxtC.Text.Trim() != "" && TxtD.Text.Trim() != "" && CbDapAn.SelectedIndex != -1)
+            {
+                CauHoi cauhoi = new CauHoi();
+                cauhoi.noi_dung = TxtNoiDung.Text.Trim();
+                cauhoi.a = TxtA.Text.Trim();
+                cauhoi.b = TxtB.Text.Trim();
+                cauhoi.c = TxtC.Text.Trim();
+                cauhoi.d = TxtD.Text.Trim();
+                cauhoi.da = CbDapAn.SelectedIndex + 1;
+                Models.DeThi dethi = (Models.DeThi)LstDeThi.SelectedItem;
+                if (dethi != null)
+                {
+                    CauHoiController c = new CauHoiController();
+
+                    var rs = c.Add(cauhoi);
+                    if (Ultilities.IsResultOk(rs))
+                    {
+                        ListViewItem lvi = new ListViewItem(new string[] { cauhoi.id.ToString(), cauhoi.noi_dung, cauhoi.a, cauhoi.b, cauhoi.c, cauhoi.d });
+                        lvi.Tag = cauhoi;
+                        LstCauHoi.Items.Add(lvi);
+                        cauhoi.id = (int) rs.id;
+
+                        rs = c.SetCauHoiToDeThi(dethi, cauhoi);
+                        if (Ultilities.IsResultOk(rs))
+                        {
+                            InfoMess("Thành công");
+                        }
+                        else
+                        {
+                            ErrMess("Có lỗi xảy ra: " + rs.reason);
+                        }
+                    }
+                    else
+                    {
+                        ErrMess("Có lỗi xảy ra: " + rs.reason);
+                    }
+                }
+            }
+            else
+            {
+                ErrMess("Chưa điền đầy đủ thông tin hoặc chưa chọn đề!");
+            }
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            TxtNoiDung.Text = "";
+            TxtA.Text = "";
+            TxtB.Text = "";
+            TxtC.Text = "";
+            TxtD.Text = "";
+
+            CbDapAn.SelectedIndex = 0;
         }
     }
 }

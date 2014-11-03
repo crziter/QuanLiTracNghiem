@@ -12,6 +12,10 @@ namespace QuanLiTracNghiem.Controllers
 {
     class ThiSinhController
     {
+        public static string DS_THI_SINH = "api/thi_sinh.json";
+        public static string INSERT_THI_SINH = "api/thi_sinh.json";
+        public static string UPDATE_THI_SINH = "api/thi_sinh/{0}.json"; // ID
+
         private UserControl _view;
 
         public ThiSinhController(UserControl view)
@@ -21,20 +25,28 @@ namespace QuanLiTracNghiem.Controllers
 
         public List<ThiSinh> GetAll()
         {
-            var content = Ultilities.Get(Ultilities.DS_THI_SINH);
+            var content = Ultilities.Get(DS_THI_SINH);
             List<ThiSinh> tss = JsonConvert.DeserializeObject<List<ThiSinh>>(content);
             return tss;
         }
 
-        public bool New(ThiSinh ts)
+        public void New(ThiSinh ts)
         {
-            return Ultilities.Post(Ultilities.INSERT_THI_SINH, JsonConvert.SerializeObject(ts));
+            var rs = Ultilities.Post(INSERT_THI_SINH, JsonConvert.SerializeObject(ts));
+            if (!Ultilities.IsResultOk(rs))
+            {
+                throw new Exception(rs.reason);
+            }
         }
 
-        public bool Update(int id, ThiSinh t)
+        public void Update(int id, ThiSinh t)
         {
-            var dic = new Dictionary<string, string>();
-            return Ultilities.Patch(string.Format(Ultilities.UPDATE_THI_SINH, id), JsonConvert.SerializeObject(t));
+            // var dic = new Dictionary<string, string>();
+            var rs = Ultilities.Patch(string.Format(UPDATE_THI_SINH, id), JsonConvert.SerializeObject(t));
+            if (!Ultilities.IsResultOk(rs))
+            {
+                throw new Exception(rs.reason);
+            }
         }
     }
 }

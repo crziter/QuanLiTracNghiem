@@ -24,7 +24,7 @@ namespace QuanLiTracNghiem.Controllers
 
         public List<Models.MonThi> GetAllMonThi()
         {
-            return Ultilities.GetListObject<MonThi>(ALL_MONTHI);
+            return Ultilities.ListObjects<MonThi>(ALL_MONTHI);
         }
 
         public void Update(int id, MonThi mt)
@@ -34,7 +34,9 @@ namespace QuanLiTracNghiem.Controllers
 
         public List<DeThi> GetAllDeThi(MonThi mt)
         {
-            return Ultilities.GetListObject<DeThi>(string.Format(ALL_DETHI_BY_MONTHI, mt.id));
+            return Ultilities.ListObjects<DeThi>(string.Format(ALL_DETHI_BY_MONTHI, mt.id));
         }
+
+
     }
 }

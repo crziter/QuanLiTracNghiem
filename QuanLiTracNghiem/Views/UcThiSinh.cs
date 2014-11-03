@@ -129,15 +129,11 @@ namespace QuanLiTracNghiem.Views
 
             try
             {
-                if (_controller.New(ts))
-                {
-                    ReloadList();
-                    SetList(_lst_ts);
-                    InforMess("Thêm thành công");
-                } else
-                {
-                    ErrMess("Thêm thất bại");
-                }
+                _controller.New(ts);
+                ReloadList();
+                SetList(_lst_ts);
+
+                InforMess("Thêm thành công");
             }
             catch (Exception ex)
             {

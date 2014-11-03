@@ -51,11 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CauHoiController.cs" />
     <Compile Include="Controllers\DeThiController.cs" />
     <Compile Include="Controllers\ThiSinhController.cs" />
     <Compile Include="Controllers\Ultilities.cs" />
     <Compile Include="Models\CauHoi.cs" />
     <Compile Include="Models\DeThi.cs" />
+    <Compile Include="Models\DeThiCauHoi.cs" />
     <Compile Include="Models\MonThi.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\ThiSinh.cs" />

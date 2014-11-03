@@ -65,6 +65,7 @@
             this.TxtA = new System.Windows.Forms.TextBox();
             this.TxtNoiDung = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.BtnClear = new System.Windows.Forms.Button();
             this.PnCauHoi.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,6 +162,7 @@
             this.LstDeThi.Name = "LstDeThi";
             this.LstDeThi.Size = new System.Drawing.Size(120, 186);
             this.LstDeThi.TabIndex = 8;
+            this.LstDeThi.SelectedIndexChanged += new System.EventHandler(this.LstDeThi_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -184,12 +186,15 @@
             this.cB,
             this.cC,
             this.cD});
+            this.LstCauHoi.FullRowSelect = true;
+            this.LstCauHoi.GridLines = true;
             this.LstCauHoi.Location = new System.Drawing.Point(166, 23);
             this.LstCauHoi.Name = "LstCauHoi";
             this.LstCauHoi.Size = new System.Drawing.Size(423, 210);
             this.LstCauHoi.TabIndex = 10;
             this.LstCauHoi.UseCompatibleStateImageBehavior = false;
             this.LstCauHoi.View = System.Windows.Forms.View.Details;
+            this.LstCauHoi.SelectedIndexChanged += new System.EventHandler(this.LstCauHoi_SelectedIndexChanged);
             // 
             // cID
             // 
@@ -234,11 +239,13 @@
             this.BtnXoaCauHoi.Size = new System.Drawing.Size(23, 23);
             this.BtnXoaCauHoi.TabIndex = 12;
             this.BtnXoaCauHoi.UseVisualStyleBackColor = true;
+            this.BtnXoaCauHoi.Click += new System.EventHandler(this.BtnXoaCauHoi_Click);
             // 
             // PnCauHoi
             // 
             this.PnCauHoi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnCauHoi.Controls.Add(this.BtnClear);
             this.PnCauHoi.Controls.Add(this.BtnLuu);
             this.PnCauHoi.Controls.Add(this.BtnNew);
             this.PnCauHoi.Controls.Add(this.CbDapAn);
@@ -267,6 +274,7 @@
             this.BtnLuu.TabIndex = 25;
             this.BtnLuu.Text = "Lưu";
             this.BtnLuu.UseVisualStyleBackColor = true;
+            this.BtnLuu.Click += new System.EventHandler(this.BtnLuu_Click);
             // 
             // BtnNew
             // 
@@ -277,6 +285,7 @@
             this.BtnNew.TabIndex = 24;
             this.BtnNew.Text = "Thêm";
             this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // CbDapAn
             // 
@@ -397,6 +406,18 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Nội dung:";
             // 
+            // BtnClear
+            // 
+            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnClear.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnClear.Location = new System.Drawing.Point(276, 136);
+            this.BtnClear.Name = "BtnClear";
+            this.BtnClear.Size = new System.Drawing.Size(79, 23);
+            this.BtnClear.TabIndex = 26;
+            this.BtnClear.Text = "Xóa trắng";
+            this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
             // UcDeThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -463,5 +484,6 @@
         private System.Windows.Forms.TextBox TxtA;
         private System.Windows.Forms.TextBox TxtNoiDung;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button BtnClear;
     }
 }

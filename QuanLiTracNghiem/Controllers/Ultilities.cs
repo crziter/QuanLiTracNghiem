@@ -14,9 +14,9 @@ namespace QuanLiTracNghiem.Controllers
     {
         public static string HOST = "http://crziter.me:3000";
         
-        public static string DS_THI_SINH = "api/thi_sinh.json";
-        public static string INSERT_THI_SINH = "api/thi_sinh.json";
-        public static string UPDATE_THI_SINH = "api/thi_sinh/{0}.json"; // ID
+//         
+//         
+//         
 
         public static string WebContent(string uri, Method method, string data, Dictionary<string, string> pars)
         {
@@ -36,7 +36,6 @@ namespace QuanLiTracNghiem.Controllers
             if (method == Method.POST || method == Method.PUT || method == Method.PATCH)
             {
                 if (data != null)
-                    // request.AddBody(data);
                     request.AddParameter("application/json", data, ParameterType.RequestBody);
             }
 
@@ -44,8 +43,39 @@ namespace QuanLiTracNghiem.Controllers
             return response.Content;
         }
 
+        public static string Get(string url)
+        {
+            return WebContent(url, Method.GET, null, null);
+        }
 
-        public static List<T> GetListObject<T>(string url)
+        public static Result Post(string url, string data)
+        {
+            string content = WebContent(url, Method.POST, data, null);
+
+            Result rs = JsonConvert.DeserializeObject<Result>(content);
+            return rs;
+        }
+
+        public static Result Patch(string url, string data)
+        {
+            string content = WebContent(url, Method.PATCH, data, null);
+
+            Result rs = JsonConvert.DeserializeObject<Result>(content);
+            return rs;
+        }
+
+        public static bool IsResultOk(Result rs)
+        {
+            if (rs != null)
+            {
+                if (rs.status.Equals("ok")) return true;
+                return false;
+            }
+
+            return false;
+        }
+
+        public static List<T> ListObjects<T>(string url)
         {
             List<T> _rs = new List<T>();
             string content = Get(url);
@@ -55,41 +85,10 @@ namespace QuanLiTracNghiem.Controllers
             return _rs;
         }
 
-        public static string Get(string url)
+        public static Result Update<T1>(string url, T1 obj)
         {
-            return WebContent(url, Method.GET, null, null);
-        }
-
-        public static bool Patch(string url, string data)
-        {
-            string content = WebContent(url, Method.PATCH, data, null);
-
-            Result rs = JsonConvert.DeserializeObject<Result>(content);
-            if (rs.status != null) {
-                if (rs.status.Equals("ok")) return true;
-                else throw new Exception(rs.reason);
-            } else throw new Exception("Unknow reason");
-        }
-
-        public static bool Post(string url, string data)
-        {
-            string content = WebContent(url, Method.POST, data, null);
-
-            Result rs = JsonConvert.DeserializeObject<Result>(content);
-            if (rs.status != null) {
-                if (rs.status.Equals("ok")) return true;
-                else
-                {
-                    throw new Exception(rs.reason);
-                }
-            }
-
-            return false;
-        }
-
-        public static bool Update<T1>(string url, T1 obj)
-        {
-            return Patch(url, JsonConvert.SerializeObject(obj));
+            var rs = Patch(url, JsonConvert.SerializeObject(obj));
+            return rs;
         }
     }
 }
