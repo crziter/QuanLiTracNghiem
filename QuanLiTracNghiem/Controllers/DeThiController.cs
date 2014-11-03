@@ -1,4 +1,5 @@
-﻿using QuanLiTracNghiem.Models;
+﻿using Newtonsoft.Json;
+using QuanLiTracNghiem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace QuanLiTracNghiem.Controllers
         public static string UPDATE_MONTHI = "api/mon_thi/{0}.json"; // id
 
         public static string ALL_DETHI_BY_MONTHI = "api/de_thi/{0}/list.json"; // id
+        public static string DELETE_CH_FROM_DT = "/api/de_thi/{0}/{1}.json"; // dt_id, ch_id
 
         private UserControl _view;
 
@@ -37,6 +39,11 @@ namespace QuanLiTracNghiem.Controllers
             return Ultilities.ListObjects<DeThi>(string.Format(ALL_DETHI_BY_MONTHI, mt.id));
         }
 
-
+        public Result DeleteCauHoiFromDeThi(CauHoi ch, DeThi dt)
+        {
+            var str = Ultilities.Delete(string.Format(DELETE_CH_FROM_DT, dt.id, ch.id));
+            Result rs = JsonConvert.DeserializeObject<Result>(str);
+            return rs;
+        }
     }
 }

@@ -12,11 +12,7 @@ namespace QuanLiTracNghiem.Controllers
 {
     class Ultilities
     {
-        public static string HOST = "http://crziter.me:3000";
-        
-//         
-//         
-//         
+        public static string HOST = "http://crziter.me:3000";     
 
         public static string WebContent(string uri, Method method, string data, Dictionary<string, string> pars)
         {
@@ -46,6 +42,11 @@ namespace QuanLiTracNghiem.Controllers
         public static string Get(string url)
         {
             return WebContent(url, Method.GET, null, null);
+        }
+
+        public static string Delete(string url)
+        {
+            return WebContent(url, Method.DELETE, null, null);
         }
 
         public static Result Post(string url, string data)

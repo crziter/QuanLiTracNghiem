@@ -112,7 +112,25 @@ namespace QuanLiTracNghiem.Views
 
         private void BtnXoaCauHoi_Click(object sender, EventArgs e)
         {
+            DeThiController dc = new DeThiController(this);
 
+            if (LstCauHoi.SelectedItems.Count > 0)
+            {
+                CauHoi ch = (CauHoi) LstCauHoi.SelectedItems[0].Tag;
+                DeThi dt = (DeThi)LstDeThi.SelectedItem;
+
+                Result rs = dc.DeleteCauHoiFromDeThi(ch, dt);
+                if (Ultilities.IsResultOk(rs))
+                {
+                    int idx = LstCauHoi.SelectedItems[0].Index;
+                    LstCauHoi.Items.RemoveAt(idx);
+                    InfoMess("Xong!");
+                }
+                else
+                {
+                    ErrMess("Có lỗi xảy ra: ");
+                }
+            }
         }
 
         private void LstDeThi_SelectedIndexChanged(object sender, EventArgs e)
