@@ -263,5 +263,53 @@ namespace QuanLiTracNghiem.Views
 
             CbDapAn.SelectedIndex = 0;
         }
+
+        private void BtnNewDeThi_Click(object sender, EventArgs e)
+        {
+            MonThi mt = (MonThi)LstMonThi.SelectedItem;
+            if (mt != null) {
+                var rs = _controller.NewDeThi(mt);
+                if (Ultilities.IsResultOk(rs))
+                {
+                    DeThi dt = new DeThi();
+                    dt.id = (int)rs.id;
+                    dt.mon_thi_id = mt.id;
+                    LstDeThi.Items.Add(dt);
+
+                    InfoMess("Xong!");
+                }
+                else
+                {
+                    ErrMess("Có lỗi xảy ra: " + rs.reason);
+                }
+            }
+            else
+            {
+                ErrMess("Chưa chọn môn thi!!!");
+            }
+        }
+
+        private void BtnHideDeThi_Click(object sender, EventArgs e)
+        {
+            DeThi dt = (DeThi)LstDeThi.SelectedItem;
+            if (dt != null)
+            {
+                Result rs = _controller.DeleteDeThi(dt);
+                if (Ultilities.IsResultOk(rs))
+                {
+                    LstDeThi.Items.RemoveAt(LstDeThi.SelectedIndex);
+                    LstDeThi.SelectedIndex = -1;
+                    InfoMess("Đã xóa thành công.");
+                }
+                else
+                {
+                    ErrMess("Có lỗi xảy ra: " + rs.reason);
+                }
+            }
+            else
+            {
+                ErrMess("Chưa chọn đề thi để xóa!");
+            }
+        }
     }
 }

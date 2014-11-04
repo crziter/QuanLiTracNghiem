@@ -51,6 +51,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.BtnXoaCauHoi = new System.Windows.Forms.Button();
             this.PnCauHoi = new System.Windows.Forms.Panel();
+            this.BtnClear = new System.Windows.Forms.Button();
             this.BtnLuu = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
             this.CbDapAn = new System.Windows.Forms.ComboBox();
@@ -65,7 +66,6 @@
             this.TxtA = new System.Windows.Forms.TextBox();
             this.TxtNoiDung = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.BtnClear = new System.Windows.Forms.Button();
             this.PnCauHoi.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,6 +144,7 @@
             this.BtnNewDeThi.Size = new System.Drawing.Size(23, 23);
             this.BtnNewDeThi.TabIndex = 6;
             this.BtnNewDeThi.UseVisualStyleBackColor = true;
+            this.BtnNewDeThi.Click += new System.EventHandler(this.BtnNewDeThi_Click);
             // 
             // BtnHideDeThi
             // 
@@ -154,6 +155,7 @@
             this.BtnHideDeThi.Size = new System.Drawing.Size(23, 23);
             this.BtnHideDeThi.TabIndex = 7;
             this.BtnHideDeThi.UseVisualStyleBackColor = true;
+            this.BtnHideDeThi.Click += new System.EventHandler(this.BtnHideDeThi_Click);
             // 
             // LstDeThi
             // 
@@ -264,6 +266,18 @@
             this.PnCauHoi.Name = "PnCauHoi";
             this.PnCauHoi.Size = new System.Drawing.Size(423, 166);
             this.PnCauHoi.TabIndex = 13;
+            // 
+            // BtnClear
+            // 
+            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnClear.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnClear.Location = new System.Drawing.Point(276, 136);
+            this.BtnClear.Name = "BtnClear";
+            this.BtnClear.Size = new System.Drawing.Size(79, 23);
+            this.BtnClear.TabIndex = 26;
+            this.BtnClear.Text = "Xóa trắng";
+            this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // BtnLuu
             // 
@@ -405,18 +419,6 @@
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 12;
             this.label4.Text = "Nội dung:";
-            // 
-            // BtnClear
-            // 
-            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnClear.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnClear.Location = new System.Drawing.Point(276, 136);
-            this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(79, 23);
-            this.BtnClear.TabIndex = 26;
-            this.BtnClear.Text = "Xóa trắng";
-            this.BtnClear.UseVisualStyleBackColor = true;
-            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // UcDeThi
             // 

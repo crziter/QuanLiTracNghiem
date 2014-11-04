@@ -32,8 +32,9 @@
             this.MenuChuongTrinh = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuQuanLi = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuThiSinh = new System.Windows.Forms.ToolStripMenuItem();
-            this.PnContent = new System.Windows.Forms.Panel();
             this.MnuDeThi = new System.Windows.Forms.ToolStripMenuItem();
+            this.PnContent = new System.Windows.Forms.Panel();
+            this.MnuThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +51,8 @@
             // 
             // MenuChuongTrinh
             // 
+            this.MenuChuongTrinh.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuThoat});
             this.MenuChuongTrinh.Name = "MenuChuongTrinh";
             this.MenuChuongTrinh.Size = new System.Drawing.Size(90, 20);
             this.MenuChuongTrinh.Text = "Chương trình";
@@ -66,9 +69,16 @@
             // MnuThiSinh
             // 
             this.MnuThiSinh.Name = "MnuThiSinh";
-            this.MnuThiSinh.Size = new System.Drawing.Size(152, 22);
+            this.MnuThiSinh.Size = new System.Drawing.Size(116, 22);
             this.MnuThiSinh.Text = "Thí sinh";
             this.MnuThiSinh.Click += new System.EventHandler(this.MnuThiSinh_Click);
+            // 
+            // MnuDeThi
+            // 
+            this.MnuDeThi.Name = "MnuDeThi";
+            this.MnuDeThi.Size = new System.Drawing.Size(116, 22);
+            this.MnuDeThi.Text = "Đề thi";
+            this.MnuDeThi.Click += new System.EventHandler(this.MnuDeThi_Click);
             // 
             // PnContent
             // 
@@ -79,12 +89,12 @@
             this.PnContent.TabIndex = 1;
             this.PnContent.Resize += new System.EventHandler(this.PnContent_Resize);
             // 
-            // MnuDeThi
+            // MnuThoat
             // 
-            this.MnuDeThi.Name = "MnuDeThi";
-            this.MnuDeThi.Size = new System.Drawing.Size(152, 22);
-            this.MnuDeThi.Text = "Đề thi";
-            this.MnuDeThi.Click += new System.EventHandler(this.MnuDeThi_Click);
+            this.MnuThoat.Name = "MnuThoat";
+            this.MnuThoat.Size = new System.Drawing.Size(152, 22);
+            this.MnuThoat.Text = "Thoát";
+            this.MnuThoat.Click += new System.EventHandler(this.MnuThoat_Click);
             // 
             // FrmMain
             // 
@@ -96,7 +106,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
-            this.Text = "Form1";
+            this.Text = "Quản lí trắc nghiệm";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -113,6 +123,7 @@
         private System.Windows.Forms.ToolStripMenuItem MnuThiSinh;
         private System.Windows.Forms.Panel PnContent;
         private System.Windows.Forms.ToolStripMenuItem MnuDeThi;
+        private System.Windows.Forms.ToolStripMenuItem MnuThoat;
 
     }
 }

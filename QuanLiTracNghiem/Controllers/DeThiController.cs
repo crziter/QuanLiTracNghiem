@@ -17,6 +17,9 @@ namespace QuanLiTracNghiem.Controllers
         public static string ALL_DETHI_BY_MONTHI = "api/de_thi/{0}/list.json"; // id
         public static string DELETE_CH_FROM_DT = "/api/de_thi/{0}/{1}.json"; // dt_id, ch_id
 
+        public static string NEW_DETHI = "/api/de_thi.json";
+        public static string DELETE_DETHI = "/api/de_thi/{0}.json";
+
         private UserControl _view;
 
         public DeThiController(UserControl view)
@@ -42,6 +45,19 @@ namespace QuanLiTracNghiem.Controllers
         public Result DeleteCauHoiFromDeThi(CauHoi ch, DeThi dt)
         {
             var str = Ultilities.Delete(string.Format(DELETE_CH_FROM_DT, dt.id, ch.id));
+            Result rs = JsonConvert.DeserializeObject<Result>(str);
+            return rs;
+        }
+
+        public Result NewDeThi(MonThi mt)
+        {
+
+            return Ultilities.Post(NEW_DETHI, "{\"mon_thi_id\":" + mt.id + "}");
+        }
+
+        public Result DeleteDeThi(DeThi dt)
+        {
+            var str = Ultilities.Delete(string.Format(DELETE_DETHI, dt.id));
             Result rs = JsonConvert.DeserializeObject<Result>(str);
             return rs;
         }

@@ -57,5 +57,10 @@ namespace QuanLiTracNghiem.Views
         {
             SetContent(_UcDeThiCauHoi);
         }
+
+        private void MnuThoat_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
